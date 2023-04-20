@@ -1,0 +1,86 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model Product {
+  id          String    @id
+  name        String
+  description String?   @db.LongText
+  image       String
+  sku         String
+  inventory   Int
+  category    Category? @relation(fields: [categoryId], references: [id])
+  categoryId  String?
+  price       Price?    @relation(fields: [priceId], references: [id])
+  priceId     String?
+  brand       Brand?    @relation(fields: [brandId], references: [id])
+  brandId     String?
+  createAt    DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+model Category {
+  id          String    @id
+  name        String
+  description String?   @db.LongText
+  slug        String
+  subcategory String
+  Product     Product[]
+  createAt    DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+model Price {
+  id         String    @id
+  price      Int
+  currency   Currency? @relation(fields: [currencyId], references: [id])
+  currencyId String?
+  cupom      Cupom?    @relation(fields: [cupomId], references: [id])
+  cupomId    String?
+  Product    Product[]
+  createAt   DateTime  @default(now())
+  updatedAt  DateTime  @updatedAt
+}
+
+model Brand {
+  id          String    @id
+  name        String
+  description String?   @db.LongText
+  Product     Product[]
+}
+
+model Catalog {
+  id          String   @id
+  name        String
+  description String?  @db.LongText
+  createAt    DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Currency {
+  id       String  @id
+  name     String
+  currency String
+  Price    Price[]
+}
+
+model Cupom {
+  id              String       @id
+  name            String
+  discont_value   Int
+  status          status_cupom @default(Inactive)
+  date_validation DateTime     @db.Date
+  Price           Price[]
+  createAt        DateTime     @default(now())
+  updatedAt       DateTime     @updatedAt
+}
+
+enum status_cupom {
+  Active
+  Inactive
+}

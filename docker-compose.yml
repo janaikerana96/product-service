@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  product-service-db:
+   container_name: product_service
+   image: mysql:8
+   ports:
+   - 3309:3306
+   environment:
+     MYSQL_PASSWORD: q1w2e3r4t5
+     MYSQL_DATABASE: dikota
+     MYSQL_ROOT_PASSWORD: q1w2e3r4t5
+   networks:
+    - product_service
+    
+networks:
+  product_service:
