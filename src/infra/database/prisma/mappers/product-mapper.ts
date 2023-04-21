@@ -1,4 +1,5 @@
 import { Product } from 'src/application/entities/product';
+import { Product as RawProduct } from '@prisma/client';
 
 export class ProductMapper {
   static toPrisma(product: Product) {
@@ -13,5 +14,19 @@ export class ProductMapper {
       categoryId: product.categoryId,
       brandId: product.brandId,
     };
+  }
+
+  static toDomain(raw: RawProduct): Product {
+    return new Product({
+      id: raw.id,
+      name: raw.name,
+      description: raw.description,
+      image: raw.image,
+      sku: raw.sku,
+      inventory: raw.inventory,
+      priceId: raw.priceId,
+      categoryId: raw.categoryId,
+      brandId: raw.brandId,
+    });
   }
 }

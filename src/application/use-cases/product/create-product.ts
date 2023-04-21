@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
-import { Product } from '../entities/product';
-import { ProductRepository } from '../repositories/product-repository';
+import { Product } from '../../entities/product';
+import { ProductRepository } from '../../repositories/product-repository';
 import { randomUUID } from 'node:crypto';
 
 interface CreateProductRequest {

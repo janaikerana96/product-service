@@ -14,6 +14,34 @@ export class PrismaProductRepository implements PrismaProductRepository {
     });
   }
 
+  async findById(productId: string): Promise<Product | null> {
+    const product = await this.prisma.product.findUnique({
+      where: {
+        id: productId,
+      },
+      include: {
+        brand: {},
+        price: {},
+        category: {},
+      },
+    });
+    if (!product) {
+      return null;
+    }
+    return ProductMapper.toDomain(product);
+  }
+
+  async findAll(): Promise<Product[]> {
+    const product = await this.prisma.product.findMany({
+      include: {
+        brand: {},
+        price: {},
+        category: {},
+      },
+    });
+    return product.map(ProductMapper.toDomain);
+  }
+
   /* async update(product: Product): Promise<void> {
     const raw = PrismaNotificationMapper.toPrisma(product);
 
