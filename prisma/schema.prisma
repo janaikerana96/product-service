@@ -37,7 +37,7 @@ model Category {
 
 model Price {
   id         String    @id
-  price      Int
+  priceValue Int
   currency   Currency? @relation(fields: [currencyId], references: [id])
   currencyId String?
   cupom      Cupom?    @relation(fields: [cupomId], references: [id])
@@ -65,7 +65,7 @@ model Catalog {
 model Currency {
   id       String  @id
   name     String
-  currency String
+  currencyValue String
   Price    Price[]
 }
 

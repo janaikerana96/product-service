@@ -10,7 +10,7 @@ export class ProductView {
       sku: product.sku,
       inventory: product.inventory,
       priceId: product.priceId,
-      category: product.categoryId,
+      categoryId: product.categoryId,
       brandId: product.brandId,
     };
   }

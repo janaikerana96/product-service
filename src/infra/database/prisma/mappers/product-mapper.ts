@@ -1,5 +1,5 @@
-import { Product } from 'src/application/entities/product';
 import { Product as RawProduct } from '@prisma/client';
+import { Product } from 'src/application/entities/product';
 
 export class ProductMapper {
   static toPrisma(product: Product) {

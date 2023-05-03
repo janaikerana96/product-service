@@ -2,17 +2,17 @@ import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { randomUUID } from 'node:crypto';
 import { CreateProduct } from 'src/application/use-cases/product/create-product';
+import { FindProduct } from 'src/application/use-cases/product/find-product';
+import { GetProducts } from 'src/application/use-cases/product/get-products';
 import { CreateProductDto } from '../dtos/create-product.dto';
 import { ProductView } from '../views/product-view';
-import { GetProduct } from 'src/application/use-cases/product/get-products';
-import { FindProduct } from 'src/application/use-cases/product/find-product';
 
 @ApiTags('Product')
 @Controller('product')
 export class ProductsController {
   constructor(
     private createProduct: CreateProduct,
-    private getProduct: GetProduct,
+    private getProducts: GetProducts,
     private findProduct: FindProduct,
   ) {}
 
@@ -42,6 +42,14 @@ export class ProductsController {
     });
 
     return { product: ProductView.toHTTP(product) };
+  }
+
+  @Get()
+  async getAllProducts() {
+    const { products } = await this.getProducts.execute();
+    return {
+      product: products.map(ProductView.toHTTP),
+    };
   }
 
   @Get(':id')

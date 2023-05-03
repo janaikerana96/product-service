@@ -4,20 +4,20 @@ import { ProductRepository } from 'src/application/repositories/product-reposito
 import { ProductNotFound } from '../errors/product-not-found';
 
 interface GetProductResponse {
-  product: Product[];
+  products: Product[];
 }
 
 @Injectable()
-export class GetProduct {
+export class GetProducts {
   constructor(private productRepository: ProductRepository) {}
 
   async execute(): Promise<GetProductResponse> {
-    const product = await this.productRepository.findMany();
-    if (!product) {
+    const products = await this.productRepository.findAll();
+    if (!products) {
       throw new ProductNotFound();
     }
     return {
-      product,
+      products,
     };
   }
 }

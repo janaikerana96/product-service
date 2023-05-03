@@ -1,6 +1,7 @@
 import { randomUUID } from 'crypto';
 
 export interface BrandProps {
+  id: string;
   name: string;
   description: string;
 }

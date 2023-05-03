@@ -1,6 +1,7 @@
 import { randomUUID } from 'crypto';
 
 export interface CategoryProps {
+  id: string;
   name: string;
   description: string;
   slug: string;

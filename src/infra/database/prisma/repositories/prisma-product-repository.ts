@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { ForbiddenException, Injectable } from '@nestjs/common';
 import { Product } from 'src/application/entities/product';
 import { ProductMapper } from '../mappers/product-mapper';
 import { PrismaService } from '../prisma.service';
@@ -19,14 +19,9 @@ export class PrismaProductRepository implements PrismaProductRepository {
       where: {
         id: productId,
       },
-      include: {
-        brand: {},
-        price: {},
-        category: {},
-      },
     });
     if (!product) {
-      return null;
+      throw new ForbiddenException('Product not found!');
     }
     return ProductMapper.toDomain(product);
   }
@@ -35,8 +30,6 @@ export class PrismaProductRepository implements PrismaProductRepository {
     const product = await this.prisma.product.findMany({
       include: {
         brand: {},
-        price: {},
-        category: {},
       },
     });
     return product.map(ProductMapper.toDomain);

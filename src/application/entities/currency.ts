@@ -2,7 +2,7 @@ import { randomUUID } from 'crypto';
 
 export interface CurrencyProps {
   name: string;
-  currency: string;
+  currencyValue: string;
 }
 
 export class Currency {
@@ -27,11 +27,11 @@ export class Currency {
   public get name(): string {
     return this.props.name;
   }
-  public set currency(currency: string) {
-    this.props.currency = currency;
+  public set currencyValue(currencyValue: string) {
+    this.props.currencyValue = currencyValue;
   }
 
-  public get currency(): string {
-    return this.props.currency;
+  public get currencyValue(): string {
+    return this.props.currencyValue;
   }
 }

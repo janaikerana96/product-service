@@ -1,12 +1,13 @@
 import { randomUUID } from 'crypto';
 
 export interface PriceProps {
-  price: number;
+  id: string;
+  priceValue: number;
   currencyId: string;
   cupomId: string;
 }
 
-export class Category {
+export class Price {
   private _id: string;
   private props: PriceProps;
 
@@ -21,12 +22,12 @@ export class Category {
     return this._id;
   }
 
-  public set price(price: number) {
-    this.props.price = price;
+  public set priceValue(priceValue: number) {
+    this.props.priceValue = priceValue;
   }
 
-  public get price(): number {
-    return this.props.price;
+  public get priceValue(): number {
+    return this.props.priceValue;
   }
   public set currencyId(currencyId: string) {
     this.props.currencyId = currencyId;

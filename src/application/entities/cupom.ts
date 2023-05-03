@@ -11,7 +11,7 @@ export interface CupomProps {
   date_validation: Date;
 }
 
-export class Currency {
+export class Cupom {
   private _id: string;
   private props: CupomProps;
 

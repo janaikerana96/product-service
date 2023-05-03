@@ -4,7 +4,7 @@ export abstract class ProductRepository {
   abstract create(product: Product): Promise<void>;
   abstract findById(productId: string): Promise<Product | null>;
   abstract update(product: Product): Promise<void>;
-  abstract findMany(): Promise<Product[] | null>;
+  abstract findAll(): Promise<Product[] | null>;
   /* abstract countManyCategoryId(categoryId: string): Promise<number>;
   abstract findManyByCategoryId(categoryId: string): Promise<Product[]>; */
 }
