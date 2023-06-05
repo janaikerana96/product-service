@@ -1,4 +1,3 @@
-import { randomUUID } from 'crypto';
 enum status_cupom {
   Active = 'Active',
   Inative = 'Inactive',
@@ -12,11 +11,11 @@ export interface CupomProps {
 }
 
 export class Cupom {
-  private _id: string;
+  private _id: number;
   private props: CupomProps;
 
-  constructor(props: CupomProps, id?: string) {
-    this._id = id ?? randomUUID();
+  constructor(props: CupomProps, id?: number) {
+    this._id = id;
     this.props = {
       ...props,
     };

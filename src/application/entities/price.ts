@@ -1,18 +1,16 @@
-import { randomUUID } from 'crypto';
-
 export interface PriceProps {
-  id: string;
+  id: number;
   priceValue: number;
   currencyId: string;
   cupomId: string;
 }
 
 export class Price {
-  private _id: string;
+  private _id: number;
   private props: PriceProps;
 
-  constructor(props: PriceProps, id?: string) {
-    this._id = id ?? randomUUID();
+  constructor(props: PriceProps, id?: number) {
+    this._id = id;
     this.props = {
       ...props,
     };

@@ -5,27 +5,28 @@ generator client {
 datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
+  relationMode = "prisma"
 }
 
 model Product {
-  id          String    @id
+  id          Int    @id  @default(autoincrement())
   name        String
   description String?   @db.LongText
   image       String
   sku         String
   inventory   Int
   category    Category? @relation(fields: [categoryId], references: [id])
-  categoryId  String?
+  categoryId  Int?
   price       Price?    @relation(fields: [priceId], references: [id])
-  priceId     String?
+  priceId     Int?
   brand       Brand?    @relation(fields: [brandId], references: [id])
-  brandId     String?
+  brandId     Int?
   createAt    DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
 }
 
 model Category {
-  id          String    @id
+  id          Int   @id @default(autoincrement())
   name        String
   description String?   @db.LongText
   slug        String
@@ -36,26 +37,26 @@ model Category {
 }
 
 model Price {
-  id         String    @id
+  id         Int    @id @default(autoincrement())
   priceValue Int
   currency   Currency? @relation(fields: [currencyId], references: [id])
-  currencyId String?
+  currencyId Int?
   cupom      Cupom?    @relation(fields: [cupomId], references: [id])
-  cupomId    String?
+  cupomId    Int?
   Product    Product[]
   createAt   DateTime  @default(now())
   updatedAt  DateTime  @updatedAt
 }
 
 model Brand {
-  id          String    @id
+  id          Int    @id @default(autoincrement())
   name        String
   description String?   @db.LongText
   Product     Product[]
 }
 
 model Catalog {
-  id          String   @id
+  id          Int   @id  @default(autoincrement())
   name        String
   description String?  @db.LongText
   createAt    DateTime @default(now())
@@ -63,14 +64,14 @@ model Catalog {
 }
 
 model Currency {
-  id       String  @id
+  id       Int  @id @default(autoincrement())
   name     String
   currencyValue String
   Price    Price[]
 }
 
 model Cupom {
-  id              String       @id
+  id              Int      @id @default(autoincrement())
   name            String
   discont_value   Int
   status          status_cupom @default(Inactive)
