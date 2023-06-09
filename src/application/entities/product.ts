@@ -1,13 +1,12 @@
 export interface ProductProps {
-  id: number;
   name: string;
   description: string;
   image: string;
   sku: string;
   inventory: number;
-  priceId?: string;
-  categoryId?: string;
-  brandId?: string;
+  priceId?: number;
+  categoryId?: number;
+  brandId?: number;
 }
 
 export class Product {
@@ -60,22 +59,22 @@ export class Product {
   public get inventory(): number {
     return this.props.inventory;
   }
-  public set priceId(priceId: string) {
+  public set priceId(priceId: number) {
     this.props.priceId = priceId;
   }
-  public get priceId(): string {
+  public get priceId(): number {
     return this.props.priceId;
   }
-  public set categoryId(categoryId: string) {
+  public set categoryId(categoryId: number) {
     this.props.categoryId = categoryId;
   }
-  public get categoryId(): string {
+  public get categoryId(): number {
     return this.props.categoryId;
   }
-  public set brandId(brandId: string) {
+  public set brandId(brandId: number) {
     this.props.brandId = brandId;
   }
-  public get brandId(): string {
+  public get brandId(): number {
     return this.props.brandId;
   }
 }

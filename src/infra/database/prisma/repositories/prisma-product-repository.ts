@@ -14,7 +14,7 @@ export class PrismaProductRepository implements PrismaProductRepository {
     });
   }
 
-  async findById(productId: string): Promise<Product | null> {
+  async findById(productId: number): Promise<Product | null> {
     const product = await this.prisma.product.findUnique({
       where: {
         id: productId,

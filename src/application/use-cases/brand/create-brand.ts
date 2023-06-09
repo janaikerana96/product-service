@@ -3,7 +3,6 @@ import { Brand } from 'src/application/entities/brand';
 import { BrandRepository } from 'src/application/repositories/brand-repository';
 
 interface CreateBrandRequest {
-  id: string;
   name: string;
   description: string;
 }
@@ -17,10 +16,9 @@ export class CreateBrand {
   constructor(private brandRpository: BrandRepository) {}
 
   async execute(request: CreateBrandRequest): Promise<CreateBrandResponse> {
-    const { id, name, description } = request;
+    const { name, description } = request;
 
     const brand = new Brand({
-      id,
       name,
       description,
     });

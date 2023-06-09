@@ -1,11 +1,10 @@
 import { Injectable } from '@nestjs/common';
-import { randomUUID } from 'node:crypto';
 
 import { Price } from 'src/application/entities/price';
 import { PriceRepository } from 'src/application/repositories/price-repository';
 
 interface CreatePriceRequest {
-  id: string;
+  id: number;
   priceValue: number;
   currencyId: string;
   cupomId: string;
@@ -20,10 +19,10 @@ export class CreatePrice {
   constructor(private priceRpository: PriceRepository) {}
 
   async execute(request: CreatePriceRequest): Promise<CreatePriceResponse> {
-    const { priceValue, currencyId, cupomId } = request;
+    const { id, priceValue, currencyId, cupomId } = request;
 
     const price = new Price({
-      id: randomUUID(),
+      id,
       priceValue,
       currencyId,
       cupomId,

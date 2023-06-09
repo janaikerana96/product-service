@@ -18,7 +18,6 @@ export class ProductMapper {
 
   static toDomain(raw: RawProduct): Product {
     return new Product({
-      id: raw.id,
       name: raw.name,
       description: raw.description,
       image: raw.image,

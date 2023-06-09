@@ -17,10 +17,9 @@ export class BrandsController {
 
   @Post('create')
   async create(@Body() dto: CreateBrandDto) {
-    const { id, name, description } = dto;
+    const { name, description } = dto;
 
     const { brand } = await this.createBrand.execute({
-      id,
       name,
       description,
     });

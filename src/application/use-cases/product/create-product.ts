@@ -1,10 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { Product } from '../../entities/product';
 import { ProductRepository } from '../../repositories/product-repository';
-import { randomUUID } from 'node:crypto';
 
 interface CreateProductRequest {
-  id: string;
   name: string;
   description: string;
   image: string;
@@ -27,7 +25,6 @@ export class CreateProduct {
     const { name, description, image, sku, inventory } = request;
 
     const product = new Product({
-      id: randomUUID(),
       name,
       description,
       image,

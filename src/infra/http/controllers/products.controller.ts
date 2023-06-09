@@ -1,6 +1,5 @@
 import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
-import { randomUUID } from 'node:crypto';
 import { CreateProduct } from 'src/application/use-cases/product/create-product';
 import { FindProduct } from 'src/application/use-cases/product/find-product';
 import { GetProducts } from 'src/application/use-cases/product/get-products';
@@ -30,7 +29,6 @@ export class ProductsController {
     } = dto;
 
     const { product } = await this.createProduct.execute({
-      id: randomUUID(),
       name,
       description,
       image,

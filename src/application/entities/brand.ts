@@ -1,5 +1,4 @@
 export interface BrandProps {
-  id: number;
   name: string;
   description: string;
 }

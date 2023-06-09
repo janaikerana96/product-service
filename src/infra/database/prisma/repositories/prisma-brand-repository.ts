@@ -14,7 +14,7 @@ export class PrismaBrandRepository implements PrismaBrandRepository {
     });
   }
 
-  async findById(brandId: string): Promise<Brand | null> {
+  async findById(brandId: number): Promise<Brand | null> {
     const brand = await this.prisma.brand.findUnique({
       where: {
         id: brandId,

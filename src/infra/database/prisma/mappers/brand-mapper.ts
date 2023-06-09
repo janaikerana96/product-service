@@ -13,7 +13,6 @@ export class BrandMapper {
   static toDomain(raw: RawBrand): Brand {
     return new Brand(
       {
-        id: raw.id,
         name: raw.name,
         description: raw.description,
       },
