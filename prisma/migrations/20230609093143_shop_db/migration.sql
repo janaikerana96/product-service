@@ -12,6 +12,9 @@ CREATE TABLE `Product` (
     `createAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `updatedAt` DATETIME(3) NOT NULL,
 
+    INDEX `Product_categoryId_idx`(`categoryId`),
+    INDEX `Product_priceId_idx`(`priceId`),
+    INDEX `Product_brandId_idx`(`brandId`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
@@ -37,6 +40,8 @@ CREATE TABLE `Price` (
     `createAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
     `updatedAt` DATETIME(3) NOT NULL,
 
+    INDEX `Price_currencyId_idx`(`currencyId`),
+    INDEX `Price_cupomId_idx`(`cupomId`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 

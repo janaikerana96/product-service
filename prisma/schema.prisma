@@ -23,6 +23,10 @@ model Product {
   brandId     Int?
   createAt    DateTime  @default(now())
   updatedAt   DateTime  @updatedAt
+
+  @@index([categoryId])
+  @@index([priceId])
+  @@index([brandId])
 }
 
 model Category {
@@ -46,6 +50,9 @@ model Price {
   Product    Product[]
   createAt   DateTime  @default(now())
   updatedAt  DateTime  @updatedAt
+
+  @@index([currencyId])
+  @@index([cupomId])
 }
 
 model Brand {
